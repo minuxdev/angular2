@@ -1,0 +1,111 @@
+<div class="container mx-4">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <h2>Table of content</h2>
+            <ul>
+                <li>
+                    <a href="#D1">Directives</a>
+                </li>
+                <li>
+                    <a href="#D2">Structural Directives</a>
+                </li>
+                <li>
+                    <a href="#D3">Attributes Directives</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="col-xs-12 col-md-9">
+            <article class="col-xs-12 col-md-10  mx-auto">
+                <h1 id="D1" class="fs-1 my-2">Directives</h1>
+                <p>Are instructions passed to HTML template to manipulate the DOM. With directives is possible to hide
+                    or show HTML Elements under centrain condition, change its properties, loop thrugh an array and
+                    render <i>N</i> times an element according to array length, etc.
+                    There are basically two types of directives:
+                </p>
+                
+                <ol type="a">
+                    <li>
+                        <h4>Structurals</h4>
+                        <p>Used to modify HTML structure</p>
+                        <ul>
+                            <li>*ngFor="let item of collection" </li>
+                            <li>*ngIf="Property" </li>
+                            <li>[ngSwitch]="conditionExpression", etc. </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>Attributes</h4>
+                        <p>Used to modify HTML Element styles</p>
+                        <ul>
+                            <li>[ngClass]="{{ '{"class-name1": condition1, "class-name2": condition2}' }}" </li>
+                            <li>[ngStyle]="{{ '{key1: value1, key2: value2}' }}"</li>
+                        </ul>
+                    </li>
+                </ol>
+            </article>
+        
+            <article class="col-xs-12 col-md-10 mx-auto">
+                <h2 id="D2">Structural Directives</h2>
+                <ul>
+                    <li>
+                        <code>*ngIf="Property" </code>
+                        <p>Will render HTML Element host only if the 
+                            conditionExpression evaluate <b><i>true</i></b>
+                        </p>
+                        <em>Since mess with the DOM can impact on performance, property bind can be
+                            used wether to hide or show element.
+                        </em>
+                        <em><b>{{ '[hidden]="Property"' }}</b> can be used instead of <b>{{ '*ngIf="Property"' }}</b>,
+                            however, using <i><b>[hidden]</b></i> brings up security issues because hidden 
+                            HTML Elements can still be accessed thrugh Developer Tools. Being so, it's extremelly
+                            important to know when to use it.
+                        </em>
+                    </li>
+                    <li>
+                        <code>*ngFor="let item of collection" </code>
+                        <p>Will render HTML Element host for <i><b>N</b></i> collection.length</p>
+                    </li>
+                    <li>
+                        <code>[ngSwitch]="conditionExpression" </code>
+                        <p>Used to choose one among a group of options. To test the conditionExpression for each possible
+                            value, <b><i>*ngSwitchCase="'option'"</i></b> is used and <b><i>*ngSwitchDefault="default value"</i></b>
+                            for default value.
+                        </p>
+                    </li>
+                </ul>
+        
+                <h2 id="D3">Attribute Directives</h2>
+                <ul>
+                    <li>
+                        <code>[ngStyle]="{{ '{property1: condition, property2: condition}' }}</code>
+                        <p>Used to change or add CSS properties directly from HTML Element</p>
+                    </li>
+                    <li>
+                        <code>[ngClass]="{{ '{"class-name", condition, "class-name2": condition2}' }}"</code>
+                        <p>Used to apply CSS classes to HTML Element under certain conditions. Its usage may vary depending on
+                            the type of expression evaluation.
+                        </p>
+                        <ul>
+                            <li>
+                                <p><code>string</code> - the CSS classes listed in the string (space delimited) are added,</p>
+                                <em>[ngClass]="'class1 class2'"</em>
+                            </li>
+                            <li>
+                                <p><code>Array</code> - the CSS classes declared as Array elements are added,</p>
+                                <em>[ngClass]="['class1', 'class2', '...']" </em>
+                            </li>
+                            <li>
+                                <p><code>Object</code> -  keys are CSS classes that get added when the expression 
+                                    given in the value evaluates to a truthy value, otherwise they are removed.</p>
+                                    <em>[ngClass]="{{ '{"class1 class2": condition}' }}"</em>
+                            </li>
+        
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+        </div>    
+    </div>
+
+</div>
