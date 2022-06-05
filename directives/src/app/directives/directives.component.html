@@ -12,12 +12,16 @@
                 <li>
                     <a href="#D3">Attributes Directives</a>
                 </li>
+                <!-- <li>
+                    <a href="#D4">Custom Directives</a>
+                </li> -->
             </ul>
         </div>
         
         <div class="col-xs-12 col-md-9">
             <article class="col-xs-12 col-md-10  mx-auto">
                 <h1 id="D1" class="fs-1 my-2">Directives</h1>
+                <p><em>Read more here: <a href="https://angular.io/guide/built-in-directives"> Angular guide</a></em></p>
                 <p>Are instructions passed to HTML template to manipulate the DOM. With directives is possible to hide
                     or show HTML Elements under centrain condition, change its properties, loop thrugh an array and
                     render <i>N</i> times an element according to array length, etc.
@@ -31,7 +35,8 @@
                         <ul>
                             <li>*ngFor="let item of collection" </li>
                             <li>*ngIf="Property" </li>
-                            <li>[ngSwitch]="conditionExpression", etc. </li>
+                            <li>[ngSwitch]="conditionExpression"</li>
+                            <li>ng-content</li>
                         </ul>
                     </li>
                     <li>
@@ -73,6 +78,20 @@
                             for default value.
                         </p>
                     </li>
+                    <li>
+                        <code>ng-content</code>
+                        <p>
+                            By default, angular will ignore everything between {{ "\<app-child> ... some content here ...\</app-child>" }}
+                            however, there is a possibility to place and render that content by adding <code>ng-content</code> tags in 
+                            <em> child.component.html </em>file where that content should be rendered.
+                        </p>
+
+                        <i>in parent.component.html</i>
+                        <p>{{ "\<app-child> Render this content \</app-child>" }}</p>
+
+                        <i>in child.component.html</i>
+                        <p>{{ "\<ng-content>\</ng-content>" }} <em><-- content is rendered here...</em></p>
+                    </li>
                 </ul>
         
                 <h2 id="D3">Attribute Directives</h2>
@@ -104,6 +123,7 @@
                         </ul>
                     </li>
                 </ul>
+
             </article>
         </div>    
     </div>
