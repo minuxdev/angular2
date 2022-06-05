@@ -1,1 +1,244 @@
-<p>guide works!</p>
+<div class="container">
+    <h2 class="display-4 my-2 text-center">Guide Component</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <h2 id="S0">Table of content</h2>
+                <li><a href="#S0">Table of content</a></li>
+            <ul>
+                <li><a href="#S1">Services</a></li>
+                <li><a href="#S2">How to generate a service</a></li>
+                <li><a href="#S3">Service instances</a></li>
+                <li><a href="#S4">Broadcast events across instances</a></li>
+            </ul>
+        </div>
+        <div class="col-md-7">
+            <section>
+                <h2 id="S1">Services</h2>
+                <p>Services are used to provide the business logic to your application allowing
+                    interaction across the app. It also provide the possibility to avoid the 
+                    <b>DRY -> <i>Don't Repeat Yourself in your code</i></b>, it means you don't have to
+                    write methods to, for example, get data, validate forms, send data, etc. 
+                    for each component.
+                </p>
+                <p>
+                    Let's assume you a creating a simple <b>CRUD</b> application and you have two components
+                    that need to <b><i>get and store</i></b> data in MySQLDB. Without a <i>service</i> you
+                    would create methods to do the exactly same thing in both components and here is where
+                    services come in to picture. To solve repetition you can create those methods in a service
+                    file and share them accross the components.
+                </p>
+            </section>
+            
+            <section>
+                <h3 id="S2">How to generate a service</h3>
+                <p>To generate a new service, simply execute this command</p>
+                <div class="example rounded">
+                    <p>ng g s <b><i>pathTo/serviceName</i></b> [options]</p>
+                </div>
+                <p>
+                    Let's say you want to create <b><i>guide</i></b> service in your app, it's a good practice to have it 
+                    in a separated folder <i>"only for services or inside parent folder for all components using it"</i>
+                    in this case in <i>"share"</i> folder, the command would be
+                </p>
+                <div class="example rounded">
+                    <p>ng g s <b><i>share/guide</i></b></p>
+                </div>
+                <p>Two files will be generated, <i><b>guide.service.ts</b></i> and <i>guide.service.spec.ts</i></p>
+                and it will looks like this
+                <pre class="example rounded">
+    {{" import { Injectable } from '@angular/core';
+
+    @Injectable({
+        providedIn: 'root'
+    })
+    export class GuideService {
+
+        constructor() { }
+    }" }}
+
+    </pre>
+
+            <p>
+                Now, to be able to use this service you need to include it in a module into <i><b>provider</b></i> list where the components
+                are declared. <br>
+                Supose you have them declared in your <i><b>app.module.ts</b></i> file and it will looks like
+            </p>
+            <pre class="example rounded">
+                <code>
+    {{ "
+    import { NgModule } from '@angular/core';
+    import { BrowserModule } from '@angular/platform-browser';
+    
+    import { AppComponent } from './app.component';
+    import { GuideComponent } from './guide/guide.component';
+    import { GuideService } from './share/guide.service';
+    
+    @NgModule({
+        declarations: [
+        AppComponent,
+        GuideComponent
+        ],
+        imports: [
+        BrowserModule
+        ],
+        providers: [GuideService],
+        bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+    " }}                   
+                </code>
+
+            </pre>
+            <p>
+                Now, every component declared in <i>app.module.ts</i> can instantiate this service
+                as long as they have it imported.
+            </p>
+            <em>To use this service in <i><b>guide.component.ts</b></i></em>
+            <pre class="example rounded">
+                <code>
+    {{ "
+    import { Component, OnInit } from '@angular/core';
+    
+    import { GuideService } from './../share/guide.service';
+    
+    @Component({
+        selector: 'app-guide',
+        templateUrl: './guide.component.html',
+        styleUrls: ['./guide.component.css']
+    })
+    export class GuideComponent implements OnInit {
+        items: string[] = [];
+        myService: any;
+    
+        constructor(_myService: GuideService) {
+        this.myService = _myService;
+        } 
+    
+        ngOnInit(): void {
+        this.items = this.myService.getItems();
+        }
+    }
+    " }}
+                </code>
+            </pre>
+            </section>
+
+            <section>
+                <h3 id="S3">Service instances</h3>
+                <p>
+                    By default a service is isntantiated only one time during its construction 
+                    even if is called multiple times in submodules <i>(also known as <b>functional modules</b>)</i>.
+                </p>
+                <h4>Multiple instances</h4>
+                <p>
+                    Let's supose we have created a service to interact with MySQLDB and three components, one to print out all stored 
+                    items <i>"<b>guide.component.ts</b></i> with is declared along with <i><b>items.component.ts</b></i> 
+                    in <i>control.module.ts</i> and <i><b>add-item.component.ts</b></i> to only list new data. 
+                </p>
+                <p>In this case we can do multiple instantiation of this service witch can be done by including 
+                    <i><b>providers: [ServiceClass]</b></i> under its <i>@Component</i> decorator in <i><b>add-item.component.ts</b></i>.
+                </p>
+                <p>It will looks like this</p>
+
+                <pre class="example rounded">
+                    <code>
+    {{ "import { GuideService } from '../share/guide.service';
+
+    @Component({
+      selector: 'app-add-item',
+      templateUrl: './add-item.component.html',
+      styleUrls: ['./add-item.component.css'],
+      providers: [GuideService]
+    }) " }}
+                    </code>
+                </pre>
+                
+                <p>
+                    This would be helpful, for example, in cases you want to provide certains features to a 
+                    member and other to a visitor.
+                </p>
+                <a href="#E1">Example here</a>
+            </section>
+
+            <section>
+                <h2 id="S4">Broadcast events across instances</h2>
+                <p>
+                    For some reason, you may want to establish a comunication thrugh service between components
+                    using direfent instances of a service, maybe you want to notify a component about something
+                    happening in another component. Well, that can be archieved by <i>broadcasting</i> the 
+                    events as follow
+                </p>
+                <em>in service.ts</em>
+                <pre class="example rounded">
+                    <code>
+{{     "    import { Injectable, EventEmitter } from '@angular/core'; 
+
+    @Injectable({
+        providedIn: 'root'
+    })
+    export class GuideService {
+        // create an event
+        static newItem = new EventEmitter\<string>();
+    
+        constructor() { }
+    
+        getItems() {
+        return this.collectedItems;
+        }
+    
+        // event sender
+        setItem(item: string) {
+            GuideService.newItem.emit(item);
+        }
+
+        Note: Static variables cannot be accessed thrugh 
+                'this' keyword but thrugh class Name.
+    }
+    " }}
+                    </code>
+                </pre>
+                <p>It can be used in a components as follow</p>
+                <pre class="example rounded">
+                    <code>
+{{ "  ngOnInit(): void {
+        GuideService.newItem.subscribe(
+            item => this.myService.storeItem(item)
+        );
+    }
+    Note: This can be used within any method" }}
+                    </code>
+                </pre>
+            </section>
+            
+        </div>
+        <div class="col-md-2">
+
+
+            <h2 id="S2">Notes</h2>
+            <ul>
+                <li><p>Components shouldn't have business logic</p></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr>
+<div id="E1" class="container my-5">
+    <div class="row">
+        <h2 class="fs-4 my-2 text-center">Items Component</h2>
+        <p>
+            Since <i>items and guide</i> components are part of the same module 
+            <i>(and same instance of GuideService)</i> they share the same data, 
+            being updated at same time.
+        </p> 
+        <div class="col-md-6">
+            <app-items></app-items>
+        </div>
+        <div class="col-md-6">
+            <h2>User 2 Items</h2>
+            <hr>
+            <ul *ngFor="let item of totalItems" >
+                <li>{{ item }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

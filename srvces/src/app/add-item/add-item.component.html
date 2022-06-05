@@ -1,0 +1,22 @@
+<div class="container">
+    <h2 class="fs-2 my-2 text-center">Add Item Component</h2>
+    <div class="row">
+        <p>
+            This component is using a different instance of <i>GuideService</i>
+            thus, is not sharing data with others.
+        </p>
+        <div class="col-md-6 my-2">
+            <h2>User 1</h2>
+            <hr>
+            <input type="text" #Item>
+            <button (click)="onAddItem(Item.value)">Add item</button>
+        </div>
+        <div class="col-md-6 my-2">
+            <h2>Added Items</h2>
+            <hr>
+            <ul *ngFor="let item of totalItems" >
+                <li>{{ item }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

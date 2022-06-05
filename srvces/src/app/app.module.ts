@@ -1,16 +1,20 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { GuideComponent } from './guide/guide.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { ControlModule } from './share/modules/control.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GuideComponent
+    AddItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ControlModule
   ],
   providers: [],
   bootstrap: [AppComponent]
