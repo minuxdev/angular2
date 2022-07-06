@@ -1,0 +1,169 @@
+
+
+<div class="row">
+    
+    <!-- <div class="col-sm-12 col-md-3">
+        <ul id="nav-mobile" class="left">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Teachers</a></li>
+            <li><a href="#">News</a></li>
+        </ul>
+    </div> -->
+
+    <div class="col-sm-12 col-md-6 ">
+        <div class="guide">
+            <h2>Routing</h2>
+            <p>Is a process of linking pages on a web app. The way it works 
+                can varier form languages.</p>
+            <p>In Angular, to manage routing process a <i>.routing.module.ts</i> 
+            file is generated which contains routes configurations such as the url and the page to be rendered.</p>
+
+            <h2>How to generate a routing module</h2>
+            <p>Since Angular doesn't support routing by default, it must to be <i>hard coded</i> or generate
+                at moment a module is generated. Angular is a module framework based and being so, is a 
+                good practice to modularize your app in order to make it more easy to maintain or add features.
+            </p>
+            <p>Let's say you want to generate a module and <i>.routing.module.ts</i> to manage all components related to
+            moduleName. To do so, run the following command:</p>
+
+            <div class="examples">
+                <code>ng generate module [moduleName] --routing</code>
+            </div>
+            <p>The above command will generate a moduleName as well a <i>moduleName.routing.module.ts</i> 
+                which will looks like this</p>
+            <div class="examples">
+                <code><pre>
+                    {{
+"
+    import { NgModule } from '@angular/core';
+    import { RouterModule, Routes } from '@angular/router';
+
+    const routes: Routes = [];
+
+    @NgModule({
+        imports: [RouterModule.forChild(routes)],
+        exports: [RouterModule]
+    })
+    export class CoursesRoutingModule { }
+    "
+                    }}
+                </pre></code>
+            </div>
+
+            <h2>How to configure routes</h2>
+            <ul>
+                <p>Before anything else, you need to</p>
+                <li>
+                    In your module, import and add the routing module inside imports
+                    <div class="examples">
+                        <pre>
+                            {{
+                                " 
+    import { CoursesRoutingModule } from './courses-routing.module';
+    
+    imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CoursesModule
+    ],"
+                            }}
+                        </pre>
+                    </div>
+                </li>
+                <li>Import and add your module into <i>app.module.ts</i> imports</li>
+                <li>Add <i>router-outlet</i> tag in the <i>app.component.html</i> to be able
+                to use routing in your app.
+                <div class="examples">
+                    <pre>
+                        {{ "
+    \<div class='container'>
+        \<!--each routed component will be displayed here-->
+        \<router-outlet>\</router-outlet>
+    \</div>                    
+                        " }}
+                    </pre>
+                </div>
+            </li>
+            </ul>
+            <p>After generating the <i>.routing.module.ts</i> module, the next step is configure it.
+            There're two scenarios to be aware of when creating routes before to choose a proper way to do it.</p>
+            <p>First of all, you need to include <i><b>router-outlet</b></i> tag in <i>parent.component.html</i> in a 
+            position where children components will be rendered.</p>
+            <b><i>#1. Render one child component at time</i></b>
+
+            <div class="examples">
+                <pre>
+                    {{
+    "
+    import { NgModule } from '@angular/core';
+    import { RouterModule, Routes } from '@angular/router';
+    
+    import { CoursesComponent } from './../courses.component';
+    import { CourseDetailsComponent } from './../course-details/course-details.component';
+    import { CourseEditComponent } from './../course-edit/course-edit.component';
+    
+    
+    const routes: Routes = [
+    {path: 'courses', component: CoursesComponent},
+    {path: 'courses/:id/course-details', component: CourseDetailsComponent},
+    {path: 'courses/:id/course-edit', component: CourseEditComponent},
+    ];
+    
+    @NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+    })
+    export class CoursesRoutingModule { }"
+                    }}
+                </pre>
+            </div>
+            <p>In above example each <i>path</i> will call and render an especific component.</p>
+
+            <b><i>#2. Render parent and child component</i></b>
+            <div class="examples">
+                <pre>{{
+                "
+    import { NgModule } from '@angular/core';
+    import { RouterModule, Routes } from '@angular/router';
+
+    import { CoursesComponent } from './../courses.component';
+    import { CourseDetailsComponent } from './../course-details/course-details.component';
+    import { CourseEditComponent } from './../course-edit/course-edit.component';
+
+    const routes: Routes = [
+    {path: 'courses', component: CoursesComponent, children: [
+        {path: ':id/course-details', component: CourseDetailsComponent},
+        {path: ':id/course-edit', component: CourseEditComponent}
+    ]}
+    ]
+
+    @NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+    })
+    export class CoursesRoutingModule { }
+                "
+                }}
+                </pre>
+            </div>
+            <p>In this example, both components will be rendered, however, the usage of 
+                <b><i>router-outlet</i></b> tag is required in <i>parent.component.html</i>
+                to render the child component.
+            </p>
+        </div>
+    </div>
+<!--     
+    <div class="col-sm-12 col-md-3">
+        <div class="nav-fixed">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Teachers</a></li>
+                <li><a href="#">News</a></li>
+            </ul>
+        </div>
+    </div> -->
+
+</div>
+

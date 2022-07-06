@@ -1,1 +1,166 @@
-<p>guide works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Table of content</h2>
+            <li>
+                    <a href="#P0">Pipes</a>
+            </li>
+            <ul>
+                <li>
+                    <a href="#P1">Buit-in Pipes</a>
+                </li>
+                <li>
+                    <a href="#P2">DatePipe</a>
+                </li>
+                <li>
+                    <a href="#P3">UpperCasePipe</a>
+                </li>
+                <li>
+                    <a href="#P4">CurrencyPipe</a>
+                </li>
+                <li>
+                    <a href="#P5">DecimalPipe</a>
+                </li>
+                <li>
+                    <a href="#P6">PercentPipe</a>
+                </li>
+                <li>
+                    <a href="#P7">Buit-in Pipes</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h2>Pipes <b>"|"</b></h2>
+            <p>
+                Are functions used to transform string into currency amounts, dates, objects
+                and other data for display.
+            </p>
+            <h2 id="P1">Buit-in Pipes</h2>
+            <p>There are pipes to transform the most common datatypes such as:</p>
+            <ul>
+                <li>
+                    <a href="https://angular.io/api/common/DatePipe">
+                        DatePipe
+                    </a>
+                    : Formats a date value according to locale rules.
+                </li>
+                <li>
+                    <a href="https://angular.io/api/common/UpperCasePipe">
+                        UpperCasePipe
+                    </a>
+                    : Transforms text to all upper case.
+                </li>
+                <li>
+                    <a href="https://angular.io/api/common/LowerCasePipe">
+                        LowerCasePipe
+                    </a>
+                    : Transforms text to all lower case.
+                </li>
+                <li>
+                    <a href="https://angular.io/api/common/CurrencyPipe">
+                        CurrencyPipe
+                    </a>
+                    : Transforms a number to a currency string
+                </li>
+                <li>
+                    <a href="https://angular.io/api/common/DecimalPipe">
+                        DecimalPipe
+                    </a>
+                    : Transforms a number into a string with a decimal point
+                </li>
+                <li>
+                    <a href="https://angular.io/api/common/PercentPipe">
+                        PercentPipe
+                    </a>
+                    : Transforms a number to a percentage string
+                </li>
+                <li>
+                    <a href="https://angular.io/api/common/JsonPipe">
+                        JsonPipe
+                    </a>
+                    : Converts a value into its JSON-format representation.
+                </li>
+            </ul>
+
+            <h3 id="P2">DatePipe</h3>
+            <p>Formats a date value according to locale rules.</p>
+            <em><b>usage</b></em><br>
+            <code>
+                {{ "{{ value_expression | date [ : format [ : timezone [ : locale ] ] ] }}" }}
+            </code>
+            <h5>Pre-defined formats</h5>
+            <figure>
+                <img class="image img-thumbnail img" src="assets/images/datePipe.png">
+            </figure>
+            <div class="example rounded">
+                <pre>
+{{ "\<p>{{new Date(2023, 4, 23) | date:'fullDate' }}\</p>" }}
+                </pre>
+                <p>{{ car.releaseDate | date:'fullDate' }}</p>
+            </div>
+
+            <h5 id="P3">UpperCasePipe</h5>
+            <em><b>usage</b></em><br>
+            <code>
+                {{ "{{ value_expression | uppercase }}" }}
+            </code>
+            <div class="example rounded">
+                <pre>
+{{ "\<p>{{ car.brand | uppercase }}\</p>" }}
+                </pre>
+                <p>{{ car.brand | uppercase }}</p>
+            </div>
+
+            <h5 id="P4">CurrencyPipe</h5>
+            <em><b>usage</b></em><br>
+            <code>
+                {{ "{{ value_expression | currency [ : currencyCode 
+                    [ : display [ : digitsInfo [ : locale ] ] ] ] }}"}}
+            </code>
+            <div class="example rounded">
+                <pre>
+{{ "\<p>{{ car.price | currency }}\</p>" }}
+                </pre>
+                <p>{{ car.price | currency }}</p>
+            </div>
+
+            <h5 id="P5">DecimalPipe</h5>
+            <em><b>usage</b></em><br>
+            <code>
+                {{ "{{ value_expression | number [ : digitsInfo [ : locale ] ] }}" }}
+            </code>
+            <div class="example rounded">
+                <pre>
+{{ "\<p>{{ car.weight | number: '4.0-2' }}\</p>" }}
+                </pre>
+                <p>{{car.weight | number: '4.0-2' }}</p>
+            </div>
+
+            <h5 id="P6">PercentPipe</h5>
+            <em><b>usage</b></em><br>
+            <code>
+                {{ "{{ value_expression | percent [ : digitsInfo [ : locale ] ] }}" }}
+            </code>
+            <div class="example rounded">
+                <pre>
+{{ "\<p>{{ car.miles | percent: '2.0-2' }}\</p>" }}
+                </pre>
+                <p>{{car.miles | percent: '2.0-2' }}</p>
+            </div>
+
+            <h5 id="P7">PercentPipe</h5>
+            <em><b>usage</b></em><br>
+            <code>
+                {{ "{{ value_expression | json }}" }}
+            </code>
+            <div class="example rounded">
+                <pre>
+{{ "\<p>{{ car.miles | json }}\</p>" }}
+                </pre>
+                <p>{{car | json }}</p>
+            </div>
+        </div>
+    </div>
+</div>

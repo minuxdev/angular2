@@ -1,0 +1,27 @@
+
+* {
+    line-height: 2rem;
+}
+
+h2-4 {
+    font-size: 1.5rem;
+}
+
+.guide {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.examples {
+    background: #241411;
+    color: #fff;
+    margin: 1rem 0;
+    padding: 0.4rem;
+    width: 100%;
+    border-radius: 4px;
+}
+
+div {
+    font-size: 1.2rem;
+}
+
