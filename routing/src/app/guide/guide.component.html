@@ -152,6 +152,121 @@
                 to render the child component.
             </p>
         </div>
+
+        <h2>Defining routes from templates</h2>
+        <h5>routerLink</h5>
+        <p>From template you want to use the <i><b>routerLink</b></i> attribute instead of 
+            the standard <i>href</i>. Note, if you have a dynamic routes in your app, use 
+            property-binding instead which receive an array where the first argument is
+            base-url and the following will be the parameters.
+        </p>
+        <div class="examples">
+            <pre>
+                {{"
+    \<!--for static url-->
+    \<a routerLink='courses'>
+
+    \<!--routerlinkActive-->
+    css-class will be applied only when the link is active
+    \<a routerLinkActive='css-class' routerLink='courses'>
+        
+    
+    \<!--for dynamic urls-->
+    \<a [routerLink]='['/baseurl', queries]'
+                "}}
+            </pre>
+        </div>
+
+        <h5>Get route url parameters</h5>
+        <p>Dynamic links are often used to pass informations to the back-end such as 
+            <i>item.id, page, queries, etc.</i> to be processed and render a component 
+            accordingly. To get those parameter you first need to
+        </p>
+        <ul>
+            <i>in course-details.component.ts</i>
+            <li>
+                <p>#1. Import and inject <b>ActivatedRoute</b></p>
+            </li>
+            <li>
+                <p>#2. Subscribe to object params</p>
+            </li>
+            <li>
+                <p>#3. Unsubscribe</p>
+            </li>
+        </ul>
+        <div class="examples">
+            <pre>
+                {{"
+    import { ActivatedRoute } from '@angular/router';
+    import { Subscription } from 'rxjs';
+    ...
+
+    export class CourseDetailsComponent implements OnInit {
+        courseName: string = '';
+        inscription: Subscription = new Subscription;
+    
+        // injecting
+        constructor(private route: ActivatedRoute) { }
+    
+        //subscribing
+        ngOnInit(): void {
+        this.inscription = this.route.params.subscribe(
+            (param: any) => {
+            this.courseName = param['course']
+            }
+        );
+        }
+
+        // unsubscribe
+        ngOnDestroy() {
+        this.inscription.unsubscribe();
+        }
+    }
+                "}}
+            </pre>
+        </div>
+
+        <h5>Get query url parameters</h5>
+        <p>Queries are passed like an JS object thru<i>queryParams</i> 
+        attribute.</p>
+        <i>in from.component.html</i>
+        <p>Define query parameters as follow: <br><code>[queryParams]={{"{key: value}"}}</code></p>
+        <i>in course-details.component.ts</i>
+        <p>#1. Import and inject <b>Router</b></p>
+        <p>Repeate step 2 and 3 from example above</p>
+
+        <div class="examples">
+            <pre>
+                {{"
+    import { ActivatedRoute, Router } from '@angular/router';
+    import { Subscription } from 'rxjs';
+    ...
+
+    export class CourseDetailsComponent implements OnInit {
+        courseName: string = '';
+        inscription: Subscription = new Subscription;
+    
+        // injecting
+        constructor(private route: Router) { }
+    
+        //subscribing
+        ngOnInit(): void {
+        this.inscription = this.route.queryParams.subscribe(
+            (params: any) => {
+            this.courseName = params['key']
+            }
+        );
+        }
+
+        // unsubscribe
+        ngOnDestroy() {
+        this.inscription.unsubscribe();
+        }
+    }
+                "}}
+            </pre>
+        </div>
+
     </div>
 <!--     
     <div class="col-sm-12 col-md-3">

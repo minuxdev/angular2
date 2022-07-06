@@ -9,7 +9,7 @@ import { GuideComponent } from './guide/guide.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: '', component: GuideComponent}
+  {path: 'guide', component: GuideComponent}
 ];
 
 @NgModule({

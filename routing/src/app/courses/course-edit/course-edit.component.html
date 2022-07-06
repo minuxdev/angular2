@@ -1,5 +1,7 @@
 
-
-<a [routerLink]="['/courses', course.id, 'course-edit']">
-    {{ course.id }}. {{ course.courseName }}
-</a>
+<div class="collection">
+    <a class="collection-item" [routerLink]="['/courses', course.courseName, 'course-details']">
+        {{ course.id }}. {{ course.courseName }}
+    </a>
+    
+</div>

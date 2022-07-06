@@ -6,19 +6,19 @@ import { CourseDetailsComponent } from './../course-details/course-details.compo
 import { CourseEditComponent } from './../course-edit/course-edit.component';
 
 
-// const routes: Routes = [
-//   {path: 'courses', component: CoursesComponent},
-//   {path: 'courses/:id/course-details', component: CourseDetailsComponent},
-//   {path: 'courses/:id/course-edit', component: CourseEditComponent},
-// ];
-
-
 const routes: Routes = [
-  {path: 'courses', component: CoursesComponent, children: [
-    {path: ':id/course-details', component: CourseDetailsComponent},
-    {path: ':id/course-edit', component: CourseEditComponent}
-  ]}
-]
+  {path: 'courses', component: CoursesComponent},
+  {path: 'courses/:course/course-details', component: CourseDetailsComponent},
+  {path: 'courses/:id/course-edit', component: CourseEditComponent},
+];
+
+
+// const routes: Routes = [
+//   {path: 'courses', component: CoursesComponent, children: [
+//     {path: ':id/course-details', component: CourseDetailsComponent},
+//     {path: ':id/course-edit', component: CourseEditComponent}
+//   ]}
+// ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
