@@ -1,6 +1,8 @@
 
 <div class="collection">
-    <a class="collection-item" [routerLink]="['/courses', course.courseName, 'course-details']">
+    <a class="collection-item" 
+        [routerLink]="['/courses/course-details']"
+        [queryParams]="{id: course.id, course: course.courseName}">
         {{ course.id }}. {{ course.courseName }}
     </a>
     

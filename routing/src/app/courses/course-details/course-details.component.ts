@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,14 +10,19 @@ import { Subscription } from 'rxjs';
 export class CourseDetailsComponent implements OnInit {
   courseName: string = '';
   inscription: Subscription = new Subscription;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.inscription = this.route.params.subscribe(
+    this.inscription = this.route.queryParams.subscribe(
       (param: any) => {
         this.courseName = param['course']
       }
     );
+  }
+
+  onNavigate() {
+    this.router.navigate(['courses'])
   }
 
   ngOnDestroy() {

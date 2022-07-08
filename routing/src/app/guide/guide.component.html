@@ -2,16 +2,17 @@
 
 <div class="row">
     
-    <!-- <div class="col-sm-12 col-md-3">
+    <div class="col s12 m3">
+        <h2>Table of content</h2>
         <ul id="nav-mobile" class="left">
             <li><a href="#">Login</a></li>
             <li><a href="#">Courses</a></li>
             <li><a href="#">Teachers</a></li>
             <li><a href="#">News</a></li>
         </ul>
-    </div> -->
+    </div>
 
-    <div class="col-sm-12 col-md-6 ">
+    <div class="col s12 col m8 ">
         <div class="guide">
             <h2>Routing</h2>
             <p>Is a process of linking pages on a web app. The way it works 
@@ -33,21 +34,18 @@
             <p>The above command will generate a moduleName as well a <i>moduleName.routing.module.ts</i> 
                 which will looks like this</p>
             <div class="examples">
-                <code><pre>
-                    {{
-"
-    import { NgModule } from '@angular/core';
-    import { RouterModule, Routes } from '@angular/router';
+                <code><pre>{{"
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router'; 
 
-    const routes: Routes = [];
+const routes: Routes = [];
 
-    @NgModule({
-        imports: [RouterModule.forChild(routes)],
-        exports: [RouterModule]
-    })
-    export class CoursesRoutingModule { }
-    "
-                    }}
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+})
+export class CoursesRoutingModule { }
+"}}
                 </pre></code>
             </div>
 
@@ -57,17 +55,14 @@
                 <li>
                     In your module, import and add the routing module inside imports
                     <div class="examples">
-                        <pre>
-                            {{
-                                " 
-    import { CoursesRoutingModule } from './courses-routing.module';
-    
-    imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoursesModule
-    ],"
-                            }}
+                        <pre>{{ " 
+import { CoursesRoutingModule } from './courses-routing.module'; 
+
+imports: [
+BrowserModule,
+AppRoutingModule,
+CoursesModule
+],"}}
                         </pre>
                     </div>
                 </li>
@@ -75,13 +70,11 @@
                 <li>Add <i>router-outlet</i> tag in the <i>app.component.html</i> to be able
                 to use routing in your app.
                 <div class="examples">
-                    <pre>
-                        {{ "
-    \<div class='container'>
-        \<!--each routed component will be displayed here-->
-        \<router-outlet>\</router-outlet>
-    \</div>                    
-                        " }}
+                    <pre>{{ "
+\<div class='container'>
+    \<!--each routed component will be displayed here-->
+    \<router-outlet>\</router-outlet>
+\</div>" }}
                     </pre>
                 </div>
             </li>
@@ -93,58 +86,53 @@
             <b><i>#1. Render one child component at time</i></b>
 
             <div class="examples">
-                <pre>
-                    {{
-    "
-    import { NgModule } from '@angular/core';
-    import { RouterModule, Routes } from '@angular/router';
-    
-    import { CoursesComponent } from './../courses.component';
-    import { CourseDetailsComponent } from './../course-details/course-details.component';
-    import { CourseEditComponent } from './../course-edit/course-edit.component';
-    
-    
-    const routes: Routes = [
-    {path: 'courses', component: CoursesComponent},
-    {path: 'courses/:id/course-details', component: CourseDetailsComponent},
-    {path: 'courses/:id/course-edit', component: CourseEditComponent},
-    ];
-    
-    @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
-    })
-    export class CoursesRoutingModule { }"
-                    }}
+                <pre>{{"
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CoursesComponent } from './../courses.component';
+import { CourseDetailsComponent } from './../course-details/course-details.component'; 
+import { CourseEditComponent } from './../course-edit/course-edit.component';
+
+
+const routes: Routes = [
+{path: 'courses', component: CoursesComponent},
+{path: 'courses/:id/course-details', component: CourseDetailsComponent},
+{path: 'courses/:id/course-edit', component: CourseEditComponent},
+];
+
+@NgModule({
+imports: [RouterModule.forChild(routes)],
+exports: [RouterModule]
+})
+export class CoursesRoutingModule { }"}}
                 </pre>
             </div>
             <p>In above example each <i>path</i> will call and render an especific component.</p>
 
             <b><i>#2. Render parent and child component</i></b>
             <div class="examples">
-                <pre>{{
-                "
-    import { NgModule } from '@angular/core';
-    import { RouterModule, Routes } from '@angular/router';
+                <pre>{{"
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-    import { CoursesComponent } from './../courses.component';
-    import { CourseDetailsComponent } from './../course-details/course-details.component';
-    import { CourseEditComponent } from './../course-edit/course-edit.component';
+import { CoursesComponent } from './../courses.component';
+import { CourseDetailsComponent } from './../course-details/course-details.component';
+import { CourseEditComponent } from './../course-edit/course-edit.component';
 
-    const routes: Routes = [
-    {path: 'courses', component: CoursesComponent, children: [
-        {path: ':id/course-details', component: CourseDetailsComponent},
-        {path: ':id/course-edit', component: CourseEditComponent}
-    ]}
-    ]
+const routes: Routes = [
+{path: 'courses', component: CoursesComponent, children: [
+    {path: ':id/course-details', component: CourseDetailsComponent},
+    {path: ':id/course-edit', component: CourseEditComponent}
+]}
+]
 
-    @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
-    })
-    export class CoursesRoutingModule { }
-                "
-                }}
+@NgModule({
+imports: [RouterModule.forChild(routes)],
+exports: [RouterModule]
+})
+export class CoursesRoutingModule { }
+"}}
                 </pre>
             </div>
             <p>In this example, both components will be rendered, however, the usage of 
@@ -195,34 +183,32 @@
             </li>
         </ul>
         <div class="examples">
-            <pre>
-                {{"
-    import { ActivatedRoute } from '@angular/router';
-    import { Subscription } from 'rxjs';
-    ...
+            <pre>{{"
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+...
 
-    export class CourseDetailsComponent implements OnInit {
-        courseName: string = '';
-        inscription: Subscription = new Subscription;
-    
-        // injecting
-        constructor(private route: ActivatedRoute) { }
-    
-        //subscribing
-        ngOnInit(): void {
-        this.inscription = this.route.params.subscribe(
-            (param: any) => {
-            this.courseName = param['course']
-            }
-        );
-        }
+export class CourseDetailsComponent implements OnInit {
+    courseName: string = '';
+    inscription: Subscription = new Subscription;
 
-        // unsubscribe
-        ngOnDestroy() {
-        this.inscription.unsubscribe();
+    // injecting
+    constructor(private route: ActivatedRoute) { }
+
+    //subscribing
+    ngOnInit(): void {
+    this.inscription = this.route.params.subscribe(
+        (param: any) => {
+        this.courseName = param['course']
         }
+    );
     }
-                "}}
+
+    // unsubscribe
+    ngOnDestroy() {
+    this.inscription.unsubscribe();
+    }
+}"}}
             </pre>
         </div>
 
@@ -230,55 +216,130 @@
         <p>Queries are passed like an JS object thru<i>queryParams</i> 
         attribute.</p>
         <i>in from.component.html</i>
-        <p>Define query parameters as follow: <br><code>[queryParams]={{"{key: value}"}}</code></p>
+        <p>Define query parameters as follow: <br>
+            <code>
+                [routerLink]="['baseurl']"
+                [queryParams]={{"{key: value}"}}</code></p>
         <i>in course-details.component.ts</i>
-        <p>#1. Import and inject <b>Router</b></p>
-        <p>Repeate step 2 and 3 from example above</p>
+        <p>Repeate all steps from example above, however, 
+            replacing <i>params</i> with <i>queryParams</i>
+        </p>
 
         <div class="examples">
-            <pre>
-                {{"
-    import { ActivatedRoute, Router } from '@angular/router';
-    import { Subscription } from 'rxjs';
-    ...
+            <pre>{{"
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+...
 
-    export class CourseDetailsComponent implements OnInit {
-        courseName: string = '';
-        inscription: Subscription = new Subscription;
-    
-        // injecting
-        constructor(private route: Router) { }
-    
-        //subscribing
-        ngOnInit(): void {
-        this.inscription = this.route.queryParams.subscribe(
-            (params: any) => {
-            this.courseName = params['key']
-            }
-        );
-        }
+export class CourseDetailsComponent implements OnInit {
+    courseName: string = '';
+    inscription: Subscription = new Subscription;
 
-        // unsubscribe
-        ngOnDestroy() {
-        this.inscription.unsubscribe();
+    // injecting
+    constructor(private route: Router) { }
+
+    //subscribing
+    ngOnInit(): void {
+    this.inscription = this.route.queryParams.subscribe(
+        (params: any) => {
+        this.courseName = params['key']
         }
+    );
     }
-                "}}
+
+    // unsubscribe
+    ngOnDestroy() {
+    this.inscription.unsubscribe();
+    }
+}"}}
             </pre>
         </div>
 
-    </div>
-<!--     
-    <div class="col-sm-12 col-md-3">
-        <div class="nav-fixed">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">Teachers</a></li>
-                <li><a href="#">News</a></li>
-            </ul>
+        <h5>Imperative routing</h5>
+        <p>The imperative routing is a way to redirect to a page 
+            directly form <i>.ts</i> file. For redirections first 
+            you need to import and inject the <i><b>Router</b></i>
+            module form <i>'@angular/router'</i> then create a logic 
+            to handle the redirection as in following example.
+        </p>
+        <div class="examples">
+            <pre>{{"
+import { ActivatedRoute, Router } from '@angular/router';
+
+constructor(private route: ActivatedRoute,
+private router: Router) { }
+
+onNavigate() {
+    this.router.navigate(['courses', this.courseName])
+}
+    "}}
+            </pre>
         </div>
-    </div> -->
+
+        <h2>Load on demand</h2>
+
+        <p>Is known that when a user access to a web page whole content will be downloaded first
+            and depending on how big it is can take while and somehow it can be an unwanted issue.
+            Here's where <i><b>LazyLoading</b></i> come into picture.
+        </p>
+        <h5>What is <i>LazyLoading</i></h5>
+        <p>Is a way to download only the needed files to render a required informations instead of
+            downloading the whole page at once.
+        </p>
+
+        <h5>Configuration</h5>
+        <p>There're couple steps you want to consider in order to make it workin.</p>
+        
+        <ul>
+            <li><p>#1. Configure baseurl in <i>app-routing.module.ts </i></p>
+                <div class="examples">
+                    <pre>
+                        <code>{{"
+const routes: Routes = [
+{ path: 'baseurl', loadChildren: () => 
+    import('baseurl.module.ts').then(m => m.BaseUrlModule) },
+];"}}
+                        </code>
+                    </pre>
+                </div>
+                <div class="important">
+                    <p><b>IMPORTANT</b>: Remove the <i>BaseUrlModule</i> form import list!</p>
+                </div>
+            </li>
+            <li>
+                <p>#2. Configure feature module routing</p>
+                <p>You may want to make your routes configurations looks like this</p>
+                <div class="examples">
+                    <pre>{{"
+const routes: Routes = [
+{path: '', component: CoursesComponent}, // equivalent to 'baseurl'
+{path: 'baseurl/new', component: CourseNewComponent}, // hard coded
+{path: 'baseurl/:id/course-details', component: CourseDetailsComponent} // dynamic
+];"}}</pre>
+                </div>
+                <div class="notes">
+                    <p>To avoid <i>url-colisions</i>, hard coded url's comes first since the module is 
+                    readen line-by-line.</p>
+                </div>
+            </li>
+
+            <li>
+                <p>#3.  Configure <i>html</i> components</p>
+                <p>
+                    Inside the <i>html</i> components, every link that points to <i>baseurl/params</i>
+                    must explicitly point the <i>baseurl</i> as the first parameter. This is valid for 
+                    <i><b>imperative navigation</b></i> too.
+                </p>
+
+                <div class="examples">
+                    <i>[routerLink]="['/baseurl', params]</i>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </div>
 
 </div>
 

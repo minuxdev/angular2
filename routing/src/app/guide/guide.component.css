@@ -1,10 +1,10 @@
-
+/* 
 * {
     line-height: 2rem;
-}
+} */
 
 h2-4 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .guide {
@@ -16,12 +16,27 @@ h2-4 {
     background: #241411;
     color: #fff;
     margin: 1rem 0;
-    padding: 0.4rem;
     width: 100%;
     border-radius: 4px;
+    overflow: auto;
+    padding: 0 1rem;
 }
 
 div {
     font-size: 1.2rem;
 }
 
+pre {
+    padding: 0.4rem 1rem;
+}
+
+.notes, .important {
+    background: #d4efee;
+    border-radius: 5px;
+    padding: 0.4rem 1rem;
+    width: 100%;
+}
+
+.important {
+    background-color: lightcoral;
+}
